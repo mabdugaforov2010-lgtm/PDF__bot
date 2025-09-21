@@ -1,5 +1,4 @@
 import os
-import os
 # DEBUG: muammo aniqlash uchun (keyin o‘chirib tashlang)
 print("=== DEBUG: ENV KEYS START ===")
 print(",".join(sorted(os.environ.keys())))
@@ -16,7 +15,7 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 # Bot tokenini Render environment variables dan olish (TO'G'RI)
-TOKEN = os.getenv("https://api.render.com/deploy/srv-d37de39r0fns739dsbdg?key=qFruPHUQKuo")
+TOKEN = tok  # <-- bu yerda oldin chiqargan tokni ishlatamiz
 
 # --- Menyular ---
 main_menu = [
