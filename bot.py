@@ -1,22 +1,9 @@
 import os
-import os
-# DEBUG: muammo aniqlash uchun (keyin o‘chirib tashlang)
-print("=== DEBUG: ENV KEYS START ===")
-print(",".join(sorted(os.environ.keys())))
-tok = os.getenv("TOKEN")
-print("=== DEBUG: TOKEN raw repr ===", repr(tok))
-if tok:
-    # mask qilish: to‘liq tokenni logga chiqarmaydi
-    print("=== DEBUG: TOKEN masked ===", tok[:6] + "..." + tok[-6:])
-else:
-    print("=== DEBUG: TOKEN missing ===")
-print("=== DEBUG: ENV KEYS END ===")
-
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 # Bot tokenini Render environment variables dan olish (TO'G'RI)
-TOKEN = os.getenv("8459597066:AAFE3ks_S1lqCDXF-1-sp_NwlRUsRZ8P5Vw")
+TOKEN = os.getenv("https://api.render.com/deploy/srv-d37de39r0fns739dsbdg?key=qFruPHUQKuo")
 
 # --- Menyular ---
 main_menu = [
