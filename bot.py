@@ -2,7 +2,7 @@ import os
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
-# Bot tokenini Render environment variables dan olish
+# Bot tokenini Render environment variables dan olish (TO'G'RI)
 TOKEN = os.getenv("8459597066:AAFE3ks_S1lqCDXF-1-sp_NwlRUsRZ8P5Vw")
 
 # --- Menyular ---
@@ -52,11 +52,19 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # --- Botni ishga tushirish ---
 if __name__ == "__main__":
-    if not TOKEN:
-        print("❌ TOKEN topilmadi! Iltimos, Render.com Environment Variables ga TOKEN qo'shing.")
+    # Diagnostika: token bor/yo'qligini ko'rsatadi (TOKEN ni toʻliq yozmaydi)
+    print("TOKEN mavjud:", bool(TOKEN))
+    if TOKEN:
+        print("TOKEN (masked):", TOKEN[:6] + "..." )
     else:
-        app = ApplicationBuilder().token(TOKEN).build()
-        app.add_handler(CommandHandler("start", start))
-        app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-        print("✅ Bot ishga tushdi...")
-        app.run_polling()
+        print("❌ TOKEN topilmadi! Iltimos, Render.com Environment Variables ga TOKEN qo'shing.")
+
+    if not TOKEN:
+        # token yo'q bo'lsa, chiqamiz
+        raise SystemExit(1)
+
+    app = ApplicationBuilder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    print("✅ Bot ishga tushdi...")
+    app.run_polling()
